@@ -1,0 +1,70 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif, Arial, Helvetica;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, rgb(8, 223, 212), #0298fc);
+}
+
+/* vh = view height, basically 100vh means this will take up 100% height of your current view */
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    /* not align-items */
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) /* input display area, minimum to be 120px, max to be automatic i.e. as high as it needs to be */
+                        repeat(5, 100px); /* this takes care of the buttons and put them in 5 rows */
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.calculator-grid > button:hover {
+    background-color: rgba(255, 255, 255, .9);
+}
+
+/* added some active style for buttons myself */
+.calculator-grid > button:active {
+    background-color: rgba(0, 0, 0, .9);
+    color: white;
+    scale: 0.96;
+    transition: .15s;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.output {
+    grid-column: 1/-1;/*takes up space from column 1 to column -1 (last column), so the entire row*/
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end; /*align it to the end*/
+    justify-content: space-around; /*space them apart from each other*/
+    flex-direction: column; /*now change it to make it align vertically */
+    padding: 10px;
+    word-wrap: break-word; /* if the word gets too long, break into the next line*/
+    word-break: break-all;
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 2.5rem;
+}
